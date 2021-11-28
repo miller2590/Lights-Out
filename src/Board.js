@@ -58,7 +58,23 @@ class Board extends React.Component {
   render() {
     // if the game is won, just show a winning msg & render nothing else
     // TODO
-    return <h1>Board</h1>;
+    let tblBoard = []
+    for (let y = 0; y < this.props.nrows; y++) {
+      let row = [];
+      for (let x = 0; x < this.props.ncols; x++) {
+        let coord = `${y}-${x}`
+        row.push(<Cell key={coord} isLit={this.state.board[y][x]}/>)
+      }
+      tblBoard.push(<tr key={y}>{row}</tr>)
+    }
+
+    return (
+      <table className="Board">
+        <tbody>
+          {tblBoard}
+        </tbody>
+      </table>
+    )
   }
 }
 
